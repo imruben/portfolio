@@ -7,10 +7,10 @@ import Link from "next/link";
 
 const projects = [
     {
-        title: "FightClub",
-        description: "A comprehensive platform for UFC fight results, fighter statistics, and event tracking. Built to provide real-time updates and detailed analytics for MMA enthusiasts.",
-        tags: ["Next.js", "Tailwind CSS", "API Integration", "Analytics"],
-        link: "https://fightclub.rubenpenaranda.com/",
+        title: "TeraFight",
+        description: "An application to track mma fighters and events",
+        tags: ["Next.js", "Typescript", "Golang", "PostgreSQL"],
+        link: "https://terafight.rubenpenaranda.com/",
         github: null,
         icon: <Trophy className="w-10 h-10 text-primary" />,
     },

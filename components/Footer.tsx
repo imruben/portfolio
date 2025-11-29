@@ -33,7 +33,7 @@ export function Footer() {
                         <span className="sr-only">LinkedIn</span>
                     </Link>
                     <Link
-                        href="mailto:contact@rubenpenaranda.com" // Assuming email, or just link to linkedin
+                        href="mailto:rpenaranda.dev@gmail.com"
                         className="p-3 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                     >
                         <Mail className="w-6 h-6" />
@@ -42,7 +42,16 @@ export function Footer() {
                 </div>
 
                 <div className="text-sm text-muted-foreground font-mono">
-                    <p>Designed & Built by Ruben Peñaranda</p>
+                    <p>
+                        Designed & Built by{" "}
+                        <Link
+                            href="https://github.com/imruben"
+                            target="_blank"
+                            className="text-primary hover:underline"
+                        >
+                            @imruben
+                        </Link>
+                    </p>
                     <p className="mt-2">© {new Date().getFullYear()} All rights reserved.</p>
                 </div>
             </div>

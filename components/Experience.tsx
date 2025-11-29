@@ -9,14 +9,14 @@ const experiences = [
         role: "Backend Developer",
         period: "February 2025 - Present",
         description: "Currently working as a Backend Developer, contributing to the development and maintenance of high-traffic e-commerce systems.",
-        tech: ["PHP", "Symfony", "Golang", "AWS"],
+        tech: ["PHP", "Symfony", "Golang", "AWS", "Kubernetes"],
     },
     {
         company: "Adnovation",
         role: "Backend Developer",
         period: "April 2023 - February 2025",
         description: "Developed modern PHP/Symfony projects including REST APIs, payment flows, and client data management. Implemented BDD/TDD testing, managed SQL/NoSQL (Mongo) databases, and ensured clean code architecture with Sentry monitoring. Worked in Agile (Kanban/Scrum) environments.",
-        tech: ["PHP", "Symfony", "MySQL", "MongoDB", "TDD", "Docker"],
+        tech: ["PHP", "Symfony", "SQL", "MongoDB", "Docker"],
     },
     {
         company: "T-Innova",
