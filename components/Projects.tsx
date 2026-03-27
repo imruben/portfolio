@@ -17,7 +17,7 @@ const projects = [
     {
         title: "More Projects Coming Soon",
         description: "I am constantly working on new ideas and experiments. Stay tuned for more open-source contributions and personal projects.",
-        tags: ["WIP", "Open Source", "Innovation"],
+        tags: ["WIP", "Open Source"],
         link: null,
         github: "https://github.com/imruben",
         icon: <FaGithub className="w-10 h-10 text-muted-foreground" />,
