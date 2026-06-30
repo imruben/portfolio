@@ -1,0 +1,48 @@
+---
+import Section from "./Section.astro";
+import ProjectCard from "./ProjectCard.astro";
+import { site } from "../data/site";
+import { fetchTopRepos } from "../lib/github";
+
+const repos = await fetchTopRepos(site.githubUser, 6);
+---
+
+<Section id="projects" label="04 — Projects" title="Things I've built" alt>
+  {
+    repos.length > 0 ? (
+      <div class="grid gap-5 sm:grid-cols-2">
+        {repos.map((repo) => (
+          <ProjectCard repo={repo} />
+        ))}
+      </div>
+    ) : (
+      <p class="text-base text-zinc-600">
+        Live project highlights are over on my GitHub profile.
+      </p>
+    )
+  }
+
+  <div class="mt-8">
+    <a
+      href={site.github}
+      target="_blank"
+      rel="noopener"
+      class="inline-flex items-center gap-2 text-sm font-medium text-accent-dark hover:underline"
+    >
+      See all repositories on GitHub
+      <svg
+        class="size-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </a>
+  </div>
+</Section>

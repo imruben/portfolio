@@ -1,0 +1,24 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  title: string;
+  alt?: boolean;
+}
+
+const { id, label, title, alt = false } = Astro.props;
+---
+
+<section id={id} class:list={["py-20 sm:py-28", alt && "bg-zinc-50"]}>
+  <div class="mx-auto max-w-5xl px-6">
+    <header class="mb-10">
+      <p class="font-mono text-sm text-accent-dark">{label}</p>
+      <h2
+        class="mt-2 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl"
+      >
+        {title}
+      </h2>
+    </header>
+    <slot />
+  </div>
+</section>
