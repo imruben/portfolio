@@ -1,21 +1,76 @@
 ---
 import Section from "./Section.astro";
+import { site } from "../data/site";
 ---
 
-<Section id="about" label="01 — About" title="A bit about me">
-  <div class="max-w-3xl space-y-4 text-base leading-relaxed text-zinc-600 sm:text-lg">
-    <p>
-      I'm a backend developer with 4+ years of experience designing and
-      shipping scalable, high-performance systems. My core stack is{" "}
-      <span class="font-medium text-zinc-900">Go</span> and{" "}
-      <span class="font-medium text-zinc-900">PHP</span>, where I build
-      microservices and APIs that stay reliable under heavy, real-world traffic.
-    </p>
-    <p>
-      Day to day I work across the whole backend lifecycle — from clean,
-      well-tested domain code (Clean Architecture, TDD/BDD) to cloud
-      infrastructure and deployments on Kubernetes, Helm, and AWS. I care about
-      reliability, maintainability, and continuously sharpening my craft.
-    </p>
+<Section id="about" label="01 — About" title="Backend is where I live">
+  <div class="grid gap-10 lg:grid-cols-3 lg:gap-12">
+    <div
+      class="reveal space-y-4 text-base leading-relaxed text-muted sm:text-lg lg:col-span-2"
+    >
+      <p>
+        I'm a backend developer with <span class="text-ink">4+ years</span> of
+        experience designing and shipping scalable, high-performance systems. My
+        core stack is <span class="font-medium text-accent">Go</span> and
+        <span class="font-medium text-accent-2">PHP</span>, where I build
+        microservices and APIs that stay fast and reliable under heavy,
+        real-world traffic.
+      </p>
+      <p>
+        I work across the whole backend lifecycle — from clean, well-tested
+        domain code (Clean Architecture, TDD/BDD) to cloud infrastructure and
+        deployments on <span class="text-ink">Kubernetes, Helm, and AWS</span>.
+        Today I'm part of the engineering team behind
+        <a
+          href={site.currentProductUrl}
+          target="_blank"
+          rel="noopener"
+          class="font-medium text-ink underline decoration-accent/50 underline-offset-4 hover:decoration-accent"
+          >{site.currentProduct}</a
+        >, one of the world's leading luxury-fashion e-commerce platforms.
+      </p>
+      <p>
+        I care about reliability, maintainability, and continuously sharpening my
+        craft — and I'm always happy to dig into a hard scaling problem.
+      </p>
+    </div>
+
+    <aside
+      class="reveal ring-gradient relative overflow-hidden rounded-2xl p-6"
+    >
+      <div
+        aria-hidden="true"
+        class="absolute -right-10 -top-10 size-32 rounded-full bg-[rgba(34,211,238,0.18)] blur-2xl"
+      >
+      </div>
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+        Currently
+      </p>
+      <h3 class="mt-3 text-lg font-semibold text-ink">{site.role}</h3>
+      <p class="mt-1 text-sm text-muted">
+        @ {site.currentCompany} ·
+        <a
+          href={site.currentProductUrl}
+          target="_blank"
+          rel="noopener"
+          class="text-accent hover:underline">{site.currentProduct}</a
+        >
+      </p>
+
+      <ul class="mt-5 space-y-3 text-sm text-muted">
+        <li class="flex gap-2.5">
+          <span class="mt-2 size-1.5 shrink-0 rounded-full bg-accent"></span>
+          High-performance microservices in Go
+        </li>
+        <li class="flex gap-2.5">
+          <span class="mt-2 size-1.5 shrink-0 rounded-full bg-accent"></span>
+          Cloud infra on Kubernetes, Helm &amp; AWS
+        </li>
+        <li class="flex gap-2.5">
+          <span class="mt-2 size-1.5 shrink-0 rounded-full bg-accent"></span>
+          Scaling a high-traffic luxury marketplace
+        </li>
+      </ul>
+    </aside>
   </div>
 </Section>

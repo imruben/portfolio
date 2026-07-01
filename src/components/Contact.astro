@@ -5,22 +5,25 @@ import { site } from "../data/site";
 
 const formspreeId = import.meta.env.PUBLIC_FORMSPREE_ID;
 const formAction = formspreeId ? `https://formspree.io/f/${formspreeId}` : null;
+
+const inputClass =
+  "w-full rounded-xl border border-line bg-white/5 px-4 py-3 text-sm text-ink placeholder:text-muted/70 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25";
 ---
 
-<Section id="contact" label="05 — Contact" title="Let's work together">
-  <div class="grid gap-10 lg:grid-cols-5">
-    <div class="lg:col-span-2">
-      <p class="text-base leading-relaxed text-zinc-600 sm:text-lg">
+<Section id="contact" label="05 — Contact" title="Let's build something">
+  <div class="grid gap-12 lg:grid-cols-5">
+    <div class="reveal lg:col-span-2">
+      <p class="text-base leading-relaxed text-muted sm:text-lg">
         Looking for a backend engineer for your team or project? I'm always
         happy to talk about Go, PHP, and scalable systems.
       </p>
 
       <a
         href={`mailto:${site.email}`}
-        class="mt-6 inline-flex items-center gap-2 font-medium text-accent-dark hover:underline"
+        class="mt-6 inline-flex items-center gap-2 font-medium text-ink transition-colors hover:text-accent"
       >
         <svg
-          class="size-5"
+          class="size-5 text-accent"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -35,18 +38,35 @@ const formAction = formspreeId ? `https://formspree.io/f/${formspreeId}` : null;
         {site.email}
       </a>
 
+      <p class="mt-2 flex items-center gap-2 text-sm text-muted">
+        <svg
+          class="size-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        {site.location}
+      </p>
+
       <div class="mt-6">
         <SocialLinks />
       </div>
     </div>
 
-    <div class="lg:col-span-3">
+    <div class="reveal lg:col-span-3">
       {
         formAction ? (
           <form id="contact-form" action={formAction} method="POST" class="space-y-4">
             <div class="grid gap-4 sm:grid-cols-2">
               <div>
-                <label for="name" class="mb-1.5 block text-sm font-medium text-zinc-700">
+                <label for="name" class="mb-1.5 block text-sm font-medium text-ink">
                   Name
                 </label>
                 <input
@@ -55,12 +75,12 @@ const formAction = formspreeId ? `https://formspree.io/f/${formspreeId}` : null;
                   name="name"
                   required
                   autocomplete="name"
-                  class="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+                  class={inputClass}
                   placeholder="Jane Doe"
                 />
               </div>
               <div>
-                <label for="email" class="mb-1.5 block text-sm font-medium text-zinc-700">
+                <label for="email" class="mb-1.5 block text-sm font-medium text-ink">
                   Email
                 </label>
                 <input
@@ -69,13 +89,13 @@ const formAction = formspreeId ? `https://formspree.io/f/${formspreeId}` : null;
                   name="email"
                   required
                   autocomplete="email"
-                  class="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+                  class={inputClass}
                   placeholder="jane@company.com"
                 />
               </div>
             </div>
             <div>
-              <label for="message" class="mb-1.5 block text-sm font-medium text-zinc-700">
+              <label for="message" class="mb-1.5 block text-sm font-medium text-ink">
                 Message
               </label>
               <textarea
@@ -83,13 +103,13 @@ const formAction = formspreeId ? `https://formspree.io/f/${formspreeId}` : null;
                 name="message"
                 required
                 rows="5"
-                class="w-full resize-y rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+                class={`${inputClass} resize-y`}
                 placeholder="Tell me a bit about what you're working on…"
               />
             </div>
             <button
               type="submit"
-              class="inline-flex items-center justify-center rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-dark disabled:cursor-not-allowed disabled:opacity-60"
+              class="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-accent to-accent-2 px-6 py-3 text-sm font-semibold text-night shadow-[0_0_30px_rgba(34,211,238,0.22)] transition-shadow hover:shadow-[0_0_42px_rgba(167,139,250,0.4)] disabled:cursor-not-allowed disabled:opacity-60"
             >
               <span data-label>Send message</span>
             </button>
@@ -101,14 +121,14 @@ const formAction = formspreeId ? `https://formspree.io/f/${formspreeId}` : null;
             />
           </form>
         ) : (
-          <div class="rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-6">
-            <p class="text-sm text-zinc-600">
+          <div class="ring-gradient rounded-2xl p-6">
+            <p class="text-sm text-muted">
               The contact form isn't configured yet. The quickest way to reach me
               is by email:
             </p>
             <a
               href={`mailto:${site.email}`}
-              class="mt-4 inline-flex items-center justify-center rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-dark"
+              class="mt-4 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-accent to-accent-2 px-6 py-3 text-sm font-semibold text-night transition-shadow hover:shadow-[0_0_42px_rgba(167,139,250,0.4)]"
             >
               Email me
             </a>
@@ -129,8 +149,8 @@ const formAction = formspreeId ? `https://formspree.io/f/${formspreeId}` : null;
     const setStatus = (message: string, ok: boolean) => {
       if (!status) return;
       status.textContent = message;
-      status.classList.remove("hidden", "text-green-600", "text-red-600");
-      status.classList.add(ok ? "text-green-600" : "text-red-600");
+      status.classList.remove("hidden", "text-emerald-400", "text-red-400");
+      status.classList.add(ok ? "text-emerald-400" : "text-red-400");
     };
 
     form.addEventListener("submit", async (event) => {

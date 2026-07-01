@@ -1,0 +1,40 @@
+---
+const tech = [
+  "Go",
+  "PHP",
+  "Symfony",
+  "Laravel",
+  "Kubernetes",
+  "Helm",
+  "AWS",
+  "Docker",
+  "PostgreSQL",
+  "MongoDB",
+  "REST APIs",
+  "Microservices",
+  "Clean Architecture",
+  "TDD / BDD",
+  "CI/CD",
+];
+
+// Duplicated once so the track can loop seamlessly at -50%.
+const loop = [...tech, ...tech];
+---
+
+<div class="marquee-mask overflow-hidden border-y border-line bg-white/[0.02] py-5">
+  <ul class="marquee-track items-center gap-8">
+    {
+      loop.map((item, i) => (
+        <li
+          class="flex shrink-0 items-center gap-8 font-mono text-sm text-muted"
+          aria-hidden={i >= tech.length ? "true" : undefined}
+        >
+          <span class="transition-colors hover:text-accent">{item}</span>
+          <span class="text-gradient" aria-hidden="true">
+            ◆
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+</div>

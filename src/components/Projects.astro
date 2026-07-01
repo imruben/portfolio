@@ -10,28 +10,28 @@ const repos = await fetchTopRepos(site.githubUser, 6);
 <Section id="projects" label="04 — Projects" title="Things I've built" alt>
   {
     repos.length > 0 ? (
-      <div class="grid gap-5 sm:grid-cols-2">
-        {repos.map((repo) => (
-          <ProjectCard repo={repo} />
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {repos.map((repo, i) => (
+          <ProjectCard repo={repo} index={i} />
         ))}
       </div>
     ) : (
-      <p class="text-base text-zinc-600">
+      <p class="reveal text-base text-muted">
         Live project highlights are over on my GitHub profile.
       </p>
     )
   }
 
-  <div class="mt-8">
+  <div class="reveal mt-10">
     <a
       href={site.github}
       target="_blank"
       rel="noopener"
-      class="inline-flex items-center gap-2 text-sm font-medium text-accent-dark hover:underline"
+      class="group inline-flex items-center gap-2 rounded-xl border border-line bg-white/5 px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent/60 hover:text-accent"
     >
       See all repositories on GitHub
       <svg
-        class="size-4"
+        class="size-4 transition-transform group-hover:translate-x-0.5"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
