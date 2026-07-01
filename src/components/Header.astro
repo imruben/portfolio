@@ -3,27 +3,29 @@ import { site, navLinks } from "../data/site";
 ---
 
 <header
-  class="sticky top-0 z-50 border-b border-zinc-200/80 bg-white/80 backdrop-blur-md"
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
 >
   <nav
-    class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4"
+    class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"
     aria-label="Primary"
   >
     <a
       href="#top"
-      class="font-mono text-sm font-semibold tracking-tight text-zinc-900 hover:text-accent-dark"
+      class="font-mono text-sm font-semibold tracking-tight text-ink transition-colors hover:text-accent"
     >
-      <span class="text-accent">&gt;</span> {site.name}
+      <span class="text-gradient">&gt;_</span>
+      {site.firstName}
     </a>
 
     <!-- Desktop nav -->
-    <ul class="hidden items-center gap-7 md:flex">
+    <ul class="hidden items-center gap-8 md:flex">
       {
         navLinks.map((link) => (
           <li>
             <a
               href={link.href}
-              class="text-sm text-zinc-600 transition-colors hover:text-accent-dark"
+              class="text-sm text-muted transition-colors hover:text-ink"
             >
               {link.label}
             </a>
@@ -34,7 +36,7 @@ import { site, navLinks } from "../data/site";
         <a
           href={site.resumeUrl}
           download
-          class="rounded-lg border border-zinc-300 px-3 py-1.5 text-sm font-medium text-zinc-800 transition-colors hover:border-accent hover:text-accent-dark"
+          class="rounded-lg border border-line bg-white/5 px-3.5 py-1.5 text-sm font-medium text-ink transition-colors hover:border-accent/60 hover:text-accent"
         >
           Résumé
         </a>
@@ -45,7 +47,7 @@ import { site, navLinks } from "../data/site";
     <button
       id="menu-toggle"
       type="button"
-      class="inline-flex items-center justify-center rounded-lg p-2 text-zinc-700 hover:bg-zinc-100 md:hidden"
+      class="inline-flex items-center justify-center rounded-lg p-2 text-ink hover:bg-white/5 md:hidden"
       aria-controls="mobile-menu"
       aria-expanded="false"
       aria-label="Toggle navigation menu"
@@ -67,14 +69,17 @@ import { site, navLinks } from "../data/site";
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden border-t border-zinc-200 md:hidden">
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-line bg-night/95 backdrop-blur-xl md:hidden"
+  >
     <ul class="space-y-1 px-6 py-4">
       {
         navLinks.map((link) => (
           <li>
             <a
               href={link.href}
-              class="block rounded-lg px-2 py-2 text-sm text-zinc-700 hover:bg-zinc-100 hover:text-accent-dark"
+              class="block rounded-lg px-2 py-2 text-sm text-muted hover:bg-white/5 hover:text-ink"
             >
               {link.label}
             </a>
@@ -85,7 +90,7 @@ import { site, navLinks } from "../data/site";
         <a
           href={site.resumeUrl}
           download
-          class="block rounded-lg px-2 py-2 text-sm font-medium text-accent-dark hover:bg-zinc-100"
+          class="block rounded-lg px-2 py-2 text-sm font-medium text-accent hover:bg-white/5"
         >
           Download Résumé
         </a>
@@ -95,15 +100,36 @@ import { site, navLinks } from "../data/site";
 </header>
 
 <script>
+  // Glass background once scrolled
+  const header = document.getElementById("site-header");
+  const onScroll = () => {
+    if (!header) return;
+    if (window.scrollY > 16) {
+      header.classList.add(
+        "border-b",
+        "border-line",
+        "bg-night/80",
+        "backdrop-blur-xl",
+      );
+    } else {
+      header.classList.remove(
+        "border-b",
+        "border-line",
+        "bg-night/80",
+        "backdrop-blur-xl",
+      );
+    }
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  // Mobile menu
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
-
   toggle?.addEventListener("click", () => {
     const isOpen = menu?.classList.toggle("hidden") === false;
     toggle.setAttribute("aria-expanded", String(isOpen));
   });
-
-  // Close the menu after tapping a link
   menu?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       menu.classList.add("hidden");

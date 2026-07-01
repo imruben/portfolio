@@ -5,19 +5,26 @@ import SocialLinks from "./SocialLinks.astro";
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-zinc-200 bg-zinc-50">
+<footer class="border-t border-line bg-night-soft">
   <div
-    class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 py-10 sm:flex-row"
+    class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-10 sm:flex-row"
   >
-    <p class="text-sm text-zinc-500">
-      © {year} {site.name}. Built with{" "}
-      <a
-        href="https://astro.build"
-        target="_blank"
-        rel="noopener"
-        class="font-medium text-zinc-600 hover:text-accent-dark">Astro</a
-      >.
-    </p>
+    <div class="text-center sm:text-left">
+      <p class="font-mono text-sm text-ink">
+        <span class="text-gradient">&gt;_</span>
+        {site.name}
+      </p>
+      <p class="mt-1 text-xs text-muted">
+        © {year} · Designed &amp; built with{" "}
+        <a
+          href="https://astro.build"
+          target="_blank"
+          rel="noopener"
+          class="text-muted underline decoration-line underline-offset-4 hover:text-accent"
+          >Astro</a
+        >.
+      </p>
+    </div>
     <SocialLinks />
   </div>
 </footer>
