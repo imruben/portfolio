@@ -1,82 +1,291 @@
 ---
 import { site } from "../data/site";
+import { findProfilePhoto } from "../lib/photo";
 import SocialLinks from "./SocialLinks.astro";
+
+const photo = findProfilePhoto();
 ---
 
-<section class="relative overflow-hidden">
-  <!-- Subtle accent backdrop -->
-  <div
-    class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,var(--color-accent-soft)_0%,transparent_70%)]"
-  >
-  </div>
-
-  <div class="mx-auto max-w-5xl px-6 py-24 sm:py-32">
-    <p class="font-mono text-sm text-accent-dark">
-      <span class="text-accent">$</span> whoami
-    </p>
-
-    <h1
-      class="mt-4 text-4xl font-bold tracking-tight text-zinc-900 sm:text-6xl"
+<section
+  class="relative isolate flex min-h-screen items-center overflow-hidden pt-28 pb-20"
+>
+  <!-- Animated background -->
+  <div aria-hidden="true" class="absolute inset-0 -z-10">
+    <div
+      class="absolute -left-24 -top-32 size-[30rem] rounded-full bg-[rgba(34,211,238,0.18)] blur-[120px] animate-aurora"
     >
-      {site.name}
-    </h1>
-
-    <p class="mt-4 text-xl text-zinc-700 sm:text-2xl">
-      {site.role} specialized in{" "}
-      <span class="font-semibold text-accent-dark">Golang</span> &amp;{" "}
-      <span class="font-semibold text-accent-dark">PHP</span>
-    </p>
-
-    <p class="mt-6 max-w-2xl text-base leading-relaxed text-zinc-600 sm:text-lg">
-      {site.tagline}
-    </p>
-
-    <p class="mt-6 flex items-center gap-2 text-sm text-zinc-500">
-      <svg
-        class="size-4"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-        <circle cx="12" cy="10" r="3"></circle>
-      </svg>
-      {site.location}
-    </p>
-
-    <div class="mt-8 flex flex-wrap items-center gap-3">
-      <a
-        href="#contact"
-        class="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-dark"
-      >
-        Get in touch
-      </a>
-      <a
-        href={site.resumeUrl}
-        download
-        class="inline-flex items-center gap-2 rounded-lg border border-zinc-300 px-5 py-2.5 text-sm font-medium text-zinc-800 transition-colors hover:border-accent hover:text-accent-dark"
-      >
-        <svg
-          class="size-4"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-          <polyline points="7 10 12 15 17 10"></polyline>
-          <line x1="12" y1="15" x2="12" y2="3"></line>
-        </svg>
-        Download CV
-      </a>
-      <SocialLinks class="ml-1" />
+    </div>
+    <div
+      class="absolute -right-24 top-24 size-[34rem] rounded-full bg-[rgba(167,139,250,0.16)] blur-[130px] animate-aurora [animation-delay:-8s]"
+    >
+    </div>
+    <div
+      class="absolute inset-0 opacity-[0.18] [background-image:linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:46px_46px] [mask-image:radial-gradient(ellipse_at_center,#000_25%,transparent_72%)]"
+    >
     </div>
   </div>
+
+  <div
+    class="mx-auto grid w-full max-w-6xl items-center gap-14 px-6 lg:grid-cols-[1.05fr_0.95fr]"
+  >
+    <!-- Left: intro -->
+    <div class="reveal">
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-line bg-white/5 px-3 py-1 text-xs font-medium text-muted"
+      >
+        <span class="relative flex size-2">
+          <span
+            class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"
+          ></span>
+          <span class="relative inline-flex size-2 rounded-full bg-accent"></span>
+        </span>
+        {site.role} · {site.location}
+      </span>
+
+      <h1
+        class="mt-6 text-5xl font-bold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl"
+      >
+        <span class="text-ink">{site.firstName}</span><br />
+        <span class="text-gradient-animated">Peñaranda</span>
+      </h1>
+
+      <p class="mt-5 text-xl font-medium text-ink/90 sm:text-2xl">
+        I build scalable backends in
+        <span class="font-semibold text-accent">Go</span> &amp;
+        <span class="font-semibold text-accent-2">PHP</span>.
+      </p>
+
+      <p class="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+        {site.tagline}
+      </p>
+
+      <!-- Stats -->
+      <dl class="mt-9 grid max-w-lg grid-cols-3 gap-5">
+        <div>
+          <dd class="text-3xl font-bold sm:text-4xl">
+            <span class="text-gradient" data-count="4" data-suffix="+">4+</span>
+          </dd>
+          <dt class="mt-1 text-xs text-muted sm:text-sm">Years experience</dt>
+        </div>
+        <div>
+          <dd class="text-3xl font-bold sm:text-4xl">
+            <span class="text-gradient" data-count="3" data-suffix="">3</span>
+          </dd>
+          <dt class="mt-1 text-xs text-muted sm:text-sm">Companies</dt>
+        </div>
+        <div>
+          <dd class="text-3xl font-bold sm:text-4xl">
+            <span class="text-gradient" data-count="100" data-suffix="%">100%</span>
+          </dd>
+          <dt class="mt-1 text-xs text-muted sm:text-sm">Backend focused</dt>
+        </div>
+      </dl>
+
+      <!-- CTAs -->
+      <div class="mt-10 flex flex-wrap items-center gap-3">
+        <a
+          href="#projects"
+          class="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-2 px-5 py-3 text-sm font-semibold text-night shadow-[0_0_30px_rgba(34,211,238,0.25)] transition-shadow hover:shadow-[0_0_42px_rgba(167,139,250,0.45)]"
+        >
+          View my work
+          <svg
+            class="size-4 transition-transform group-hover:translate-x-0.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <a
+          href={site.resumeUrl}
+          download
+          class="inline-flex items-center gap-2 rounded-xl border border-line bg-white/5 px-5 py-3 text-sm font-semibold text-ink transition-colors hover:border-accent/60 hover:text-accent"
+        >
+          <svg
+            class="size-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download CV
+        </a>
+        <SocialLinks class="ml-1" />
+      </div>
+    </div>
+
+    <!-- Right: photo + terminal -->
+    <div class="reveal mx-auto w-full max-w-sm space-y-5 lg:mx-0 lg:ml-auto">
+      <div class="relative animate-float-slow">
+        <div
+          aria-hidden="true"
+          class="absolute -inset-4 -z-10 rounded-[2.2rem] bg-gradient-to-br from-[rgba(34,211,238,0.4)] to-[rgba(167,139,250,0.4)] opacity-70 blur-2xl"
+        >
+        </div>
+
+        <div class="ring-gradient overflow-hidden rounded-[1.75rem]">
+          {
+            photo ? (
+              <img
+                src={photo}
+                alt={`Portrait of ${site.name}`}
+                width="480"
+                height="600"
+                fetchpriority="high"
+                class="aspect-[4/5] h-full w-full object-cover object-[center_15%]"
+              />
+            ) : (
+              <div class="flex aspect-[4/5] items-center justify-center bg-gradient-to-br from-surface to-night-soft">
+                <span class="text-gradient text-7xl font-bold">
+                  {site.initials}
+                </span>
+              </div>
+            )
+          }
+        </div>
+
+        <!-- Floating language chips -->
+        <span
+          class="absolute -left-3 top-8 z-10 inline-flex items-center gap-1.5 rounded-full border border-line bg-night/90 px-3 py-1.5 text-xs font-medium text-ink shadow-lg backdrop-blur animate-float"
+        >
+          <span class="size-2 rounded-full" style="background:#00ADD8"></span>
+          Go
+        </span>
+        <span
+          class="absolute -right-3 bottom-10 z-10 inline-flex items-center gap-1.5 rounded-full border border-line bg-night/90 px-3 py-1.5 text-xs font-medium text-ink shadow-lg backdrop-blur animate-float [animation-delay:-3s]"
+        >
+          <span class="size-2 rounded-full" style="background:#777BB4"></span>
+          PHP
+        </span>
+      </div>
+
+      <!-- Terminal -->
+      <div class="ring-gradient overflow-hidden rounded-2xl shadow-2xl">
+        <div
+          class="flex items-center gap-2 border-b border-line bg-white/[0.03] px-4 py-2.5"
+        >
+          <span class="size-2.5 rounded-full bg-red-400/80"></span>
+          <span class="size-2.5 rounded-full bg-yellow-400/80"></span>
+          <span class="size-2.5 rounded-full bg-green-400/80"></span>
+          <span class="ml-2 font-mono text-xs text-muted">ruben@backend</span>
+        </div>
+        <div
+          id="hero-term"
+          class="min-h-[8.75rem] space-y-1 px-4 py-3 font-mono text-[13px] leading-relaxed text-ink"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <a
+    href="#about"
+    aria-label="Scroll to content"
+    class="absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-muted transition-colors hover:text-ink sm:block"
+  >
+    <svg
+      class="size-6 animate-bounce"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </a>
 </section>
+
+<script>
+  const term = document.getElementById("hero-term");
+  if (term) {
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    const seq: { type: "cmd" | "out"; text: string }[] = [
+      { type: "cmd", text: "whoami" },
+      { type: "out", text: "Rubén Peñaranda · Backend Developer" },
+      { type: "cmd", text: "cat stack.txt" },
+      { type: "out", text: "Go · PHP · Symfony · Kubernetes · AWS" },
+      { type: "cmd", text: "echo $CURRENT_FOCUS" },
+      { type: "out", text: "Powering Mytheresa @ scale ⚡" },
+    ];
+
+    const promptHtml = '<span class="text-accent">$</span> ';
+    const cursorHtml =
+      '<span class="ml-0.5 inline-block w-[7px] animate-blink text-accent">▋</span>';
+
+    const makeLine = (cls = "") => {
+      const el = document.createElement("div");
+      if (cls) el.className = cls;
+      term.appendChild(el);
+      return el;
+    };
+
+    if (reduce) {
+      seq.forEach((s) => {
+        const el = makeLine(s.type === "out" ? "text-muted" : "");
+        el.innerHTML =
+          s.type === "cmd" ? promptHtml + s.text : s.text;
+      });
+      makeLine().innerHTML = promptHtml + cursorHtml;
+    } else {
+      let i = 0;
+
+      const typeCmd = (text: string, done: () => void) => {
+        const el = makeLine();
+        let j = 0;
+        const step = () => {
+          el.innerHTML =
+            promptHtml +
+            text.slice(0, j).replace(/</g, "&lt;") +
+            cursorHtml;
+          j += 1;
+          if (j <= text.length) {
+            window.setTimeout(step, 42 + Math.random() * 45);
+          } else {
+            el.innerHTML = promptHtml + text.replace(/</g, "&lt;");
+            done();
+          }
+        };
+        step();
+      };
+
+      const printOut = (text: string, done: () => void) => {
+        const el = makeLine("text-muted");
+        el.textContent = text;
+        window.setTimeout(done, 420);
+      };
+
+      const next = () => {
+        if (i >= seq.length) {
+          makeLine().innerHTML = promptHtml + cursorHtml;
+          return;
+        }
+        const s = seq[i];
+        i += 1;
+        if (s.type === "cmd") typeCmd(s.text, () => window.setTimeout(next, 260));
+        else printOut(s.text, next);
+      };
+
+      next();
+    }
+  }
+</script>
