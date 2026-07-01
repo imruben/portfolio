@@ -1,9 +1,16 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import { site } from "../data/site";
-import { findProfilePhoto } from "../lib/photo";
 import SocialLinks from "./SocialLinks.astro";
 
-const photo = findProfilePhoto();
+// Optional profile photo — drop me.{jpg,png,webp,…} into src/assets to enable
+// an optimized hero image; otherwise a gradient monogram is shown.
+const photoModules = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/me.{jpg,jpeg,png,webp,avif}",
+  { eager: true },
+);
+const photo = Object.values(photoModules)[0]?.default;
 ---
 
 <section
@@ -139,12 +146,12 @@ const photo = findProfilePhoto();
         <div class="ring-gradient overflow-hidden rounded-[1.75rem]">
           {
             photo ? (
-              <img
+              <Image
                 src={photo}
                 alt={`Portrait of ${site.name}`}
-                width="480"
-                height="600"
-                fetchpriority="high"
+                width={768}
+                quality={80}
+                loading="eager"
                 class="aspect-[4/5] h-full w-full object-cover object-[center_15%]"
               />
             ) : (

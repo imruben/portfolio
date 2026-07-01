@@ -1,7 +1,8 @@
 # syntax=docker/dockerfile:1
 
 # ---- Build stage: compile the static Astro site ----
-FROM node:22-alpine AS build
+# Debian-based (not alpine) so Astro's sharp image optimization works out of the box.
+FROM node:22-slim AS build
 WORKDIR /app
 
 # pnpm via corepack (lockfile is pnpm v10)

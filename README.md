@@ -33,6 +33,10 @@ touching markup.
 2. **Add your résumé (optional)** — drop a PDF at `public/resume.pdf`. The
    "Download CV" buttons link to `/resume.pdf`.
 
+   **Add your photo (optional)** — drop `me.jpg` (or `.png`/`.webp`) into
+   `src/assets/`. It's optimized automatically via `astro:assets`; without it the
+   hero shows a gradient monogram.
+
 3. **Enable the contact form (optional)** — create a free form at
    [Formspree](https://formspree.io), then:
 
@@ -75,5 +79,5 @@ docker run -p 8080:80 portfolio       # → http://localhost:8080
 contact form, add a build argument `PUBLIC_FORMSPREE_ID=<your_id>` (it's inlined
 at build time; without it the site falls back to a mailto link).
 
-> Tip: `me.jpg` is ~7 MB — consider compressing it (e.g. to WebP) before
-> deploying for a faster hero load.
+> Note: the hero photo in `src/assets/` is optimized at build time by
+> `astro:assets` (resized + WebP), so the browser only downloads a small image.
