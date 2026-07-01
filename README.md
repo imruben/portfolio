@@ -57,3 +57,23 @@ touching markup.
 
 > Per project convention, run the dev server in the background:
 > `pnpm astro dev --background` (manage with `astro dev status|logs|stop`).
+
+## 🐳 Deploy with Docker / Dokploy
+
+The included multi-stage `Dockerfile` builds the static site with Node/pnpm and
+serves it with nginx on port **80**.
+
+Locally:
+
+```sh
+docker build -t portfolio .
+docker run -p 8080:80 portfolio       # → http://localhost:8080
+```
+
+**Dokploy:** create an *Application*, point it at this repo, choose the
+**Dockerfile** build type, and set the exposed port to **80**. To enable the
+contact form, add a build argument `PUBLIC_FORMSPREE_ID=<your_id>` (it's inlined
+at build time; without it the site falls back to a mailto link).
+
+> Tip: `me.jpg` is ~7 MB — consider compressing it (e.g. to WebP) before
+> deploying for a faster hero load.
