@@ -13,7 +13,7 @@ export interface Repo {
 // Brand colors for the small language dot on each project card.
 const LANGUAGE_COLORS: Record<string, string> = {
   Go: "#00ADD8",
-  PHP: "#4F5D95",
+  PHP: "#777BB4",
   TypeScript: "#3178C6",
   JavaScript: "#F1E05A",
   "C#": "#178600",
